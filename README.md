@@ -52,12 +52,13 @@ URL of a a server side script capable of generating jSON. *Default: null*.
 jSON array of items to to use for search data , e.g. [{id:4, name:'Baker'},{id:5, name:'Davison'},{id:6, name:'Baker'}]. *Default:null*.
 
 **searchGroupText**
-If the 
+If enabled, and it is present, any group name data associated with the search data will be searched. *Default: false*.
 
 **highlightMatches**
-When enabled will hilight the parts of the search results which match the provided search terms.
+When enabled will hilight the parts of the search results which match the provided search terms. *Default: true*.
 
 **hintText**
+The text displayed in the 
 
 **noMatches**
 
