@@ -39,7 +39,6 @@ Searcher allows configuration when the plugin is initialised and  through the me
 option | description
 :-- | :---
 *minchars* | The number of characters that must be entered before a search will be performed. *Default: 2*.
- 
 *searchDelay* | The delay in milliseconds before a search is carried out after typing finishes. *Default: 500*.
 *prePopulate* | jSON array of items to prepopulate searcher with with data, e.g. [{id:1, name:'Hartnell'},{id:2, name:'Troughton'},{id:3, name:'Pertwee'}]. *Default:null*.
 *searchURL* | URL of a a server side script capable of generating jSON. *Default: null*.
@@ -49,8 +48,7 @@ option | description
 *hintText* | Placeholder text displayed in the search input box. *Default: Type in a search term*.
 *noMatches* | Text displayed when no matches are found. *Default: *.
 *doingSearch* | Text displayed when search being carried out. *Default: *.
-*defaultGroupName* |
-When *resultsGrouping* is enabled, this value will be used for any search result that doesn't have a group specified. *Default: "No specified group"*.
+*defaultGroupName* | When *resultsGrouping* is enabled, this value will be used for any search result that doesn't have a group specified. *Default: "No specified group"*.
 *resultsGrouping* | If set to true causes search results to be grouped by provided group, if a result has no groupname provided, the value specified in **defaultGroupName** will be used. *Default: true*.
 *excludeSelectedItems* | Exclude any selected items from search results. *Default: true*.
 *allowDuplicates* | Allow multiple items with the same id to be selected. *Default: false*.
