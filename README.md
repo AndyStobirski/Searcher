@@ -32,31 +32,81 @@ $(document).ready(function () {
 </script>
 ````
 
+## Data Options
+
+When passing data for selected iems or search results into Searcher, the following format is used:
+
+```
+[
+    {
+        "id": val
+        , "name": val
+    }
+]
+```
+
+In addition, there are optional fields for Search Results and Selected Items.
+
+### Selected items
+
+```
+"delete": true | false
+```
+
+### Search Results
+
+```
+"groupname": true | false
+```
+
 ## Configuation Options
 
 Searcher allows configuration when the plugin is initialised and  through the method *settings*. Options are passed in the form of a jSon array.
 
-option | description
-:-- | :---
-*minchars* | The number of characters that must be entered before a search will be performed. *Default: 2*.
-*searchDelay* | The delay in milliseconds before a search is carried out after typing finishes. *Default: 500*.
-*prePopulate* | jSON array of items to prepopulate searcher with with data, e.g. [{id:1, name:'Hartnell'},{id:2, name:'Troughton'},{id:3, name:'Pertwee'}]. *Default:null*.
-*searchURL* | URL of a a server side script capable of generating jSON. *Default: null*.
-*searchLocalData* | jSON array of items to to use for search data , e.g. [{id:4, name:'Baker'},{id:5, name:'Davison'},{id:6, name:'Baker'}]. *Default:null*.
-*searchGroupText* | If enabled, and it is present, any group name data associated with the search data will be searched. *Default: false*.
-*highlightMatches* | When enabled will hilight the parts of the search results which match the provided search terms. *Default: true*.
-*hintText* | Placeholder text displayed in the search input box. *Default: Type in a search term*.
-*noMatches* | Text displayed when no matches are found. *Default: *.
-*doingSearch* | Text displayed when search being carried out. *Default: *.
-*defaultGroupName* | When *resultsGrouping* is enabled, this value will be used for any search result that doesn't have a group specified. *Default: "No specified group"*.
-*resultsGrouping* | If set to true causes search results to be grouped by provided group, if a result has no groupname provided, the value specified in **defaultGroupName** will be used. *Default: true*.
-*excludeSelectedItems* | Exclude any selected items from search results. *Default: true*.
-*allowDuplicates* | Allow multiple items with the same id to be selected. *Default: false*.
-*maxResultsReturned* | Maximum number of search results returned. *Default: 100*.
-*maxSelectedItems* | Maximum number of items that can be selected. *Default: 100*.
-*deleteText* | The text displayed on the token delete button and clear selected items button. Specified as HTNL code. *Default: "&#10006" - displayed as ✖*.
-*enableClear* | Enables the clear tags button in the top left hand corner. Default, true. *Default: true*.
-*allowDelete* | Allows individual tags to be deleted. Default, true. *Default: true*.
+option | description | Example
+:-- | :--- | :---
+*minchars* | The number of characters that must be entered before a search will be performed. *Default: 2*. | ```$("searcher").searcher({michars:5});```
+*searchDelay* | The delay in milliseconds before a search is carried out after typing finishes. *Default: 500*. | ```$("searcher").searcher({searchDelay:250});```
+*prePopulate* | jSON array of items to prepopulate searcher with with data, e.g.  *Default:null*. | ```$("searcher").searcher({prePopulate:[{id:1, name:'Hartnell'}, {id:2, name:'Troughton'}, {id:3, name:'Pertwee'}]});```
+*searchURL* | URL of a a server side script capable of generating jSON. *Default: null*.  | ```$("searcher").searcher({searchURL:'../WebServices/wsSearch.asmx/Drugs'});```
+*searchLocalData* | jSON array of items to to use for search data , e.g. . *Default:null*. | ```$("searcher").searcher({prePopulate:[{id:4, name:'Baker', group:'Doctor Who'}, {id:5, name:'Davison', group:'Doctor Who'}, {id:6, name:'Baker', group:'Doctor Who'}]});```
+*searchGroupText* | If enabled, and it is present, any group name data associated with the search data will be searched. *Default: false*. |
+*highlightMatches* | When enabled will hilight the parts of the search results which match the provided search terms. *Default: true*. |
+*hintText* | Placeholder text displayed in the search input box. *Default: Type in a search term*. |
+*noMatches* | Text displayed when no matches are found. *Default: *. |
+*doingSearch* | Text displayed when search being carried out. *Default: *. |
+*defaultGroupName* | When *resultsGrouping* is enabled, this value will be used for any search result that doesn't have a group specified. *Default: "No specified group"*. |
+*resultsGrouping* | If set to true causes search results to be grouped by provided group, if a result has no groupname provided, the value specified in **defaultGroupName** will be used. *Default: true*. |
+*excludeSelectedItems* | Exclude any selected items from search results. *Default: true*. |
+*allowDuplicates* | Allow multiple items with the same id to be selected. *Default: false*. |
+*maxResultsReturned* | Maximum number of search results returned. *Default: 100*. |
+*maxSelectedItems* | Maximum number of items that can be selected. *Default: 100*. |
+*deleteText* | The text displayed on the token delete button and clear selected items button. Specified as HTNL code. *Default: "&#10006" - displayed as ✖*. |
+*enableClear* | Enables the clear tags button in the top left hand corner. Default, true. *Default: true*. |
+*allowDelete* | Allows individual tags to be deleted. Default, true. *Default: true*. |
 
+**Passing multiple options**
+
+To pass multiple options, comma separate them, for example:
+
+```
+$(".example1").Searcher(										
+							{			
+								minchars: 1
+								, excludeSelectedItems: false
+								, searchGroupText: true
+								, maxResultsReturned: 100
+							    , allowDuplicates: false
+						    }
+						);
+```
 
 ## Methods
+
+Method | Description | Example
+:-- | :--- | :---
+*clear* | Remove all selected items | ```$("searcher").searcher("clear");```
+*add* | Adds an item or items to the selected box, data is in the form of an array (specifed in **Data Options**,above) | ``` $(".example1").Searcher("add", [{"id":1, "name":"zygon"}, {"id":2, "name":"dalek"}]); ```
+*get* | Returns an array of selected items (specifed in **Data Options**,above) | ```$("searcher").searcher("get");```
+*remove* | Removes the sepecifed item or items from the selected box, data is in the form of an array of IDs | ``` $(".example1").Searcher("remove", [{"id":"Tennant"}, {"id":"McCoy"]); ```
+*settinsg* | Configure the control using the options specified in the section **Configuration Options** |
