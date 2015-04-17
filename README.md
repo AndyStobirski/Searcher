@@ -42,21 +42,54 @@ When passing data for selected iems or search results into Searcher, the followi
         "id": val
         , "name": val
     }
+    ....
+]
+```
+
+For example,
+
+```
+[
+	{"id":1,name:"Susan Foreman"}
+	,{"id":2,name:"Barbara Wright"}
 ]
 ```
 
 In addition, there are optional fields for Search Results and Selected Items.
 
-### Selected items
+**Selected items**
 
 ```
 "delete": true | false
 ```
 
-### Search Results
+Allows the specified item to be deleted, e.g. the delete button is displayed
+
+When not used, Searcher defaults to true.
+
+For example,
 
 ```
-"groupname": true | false
+[
+	{"id":1,name:"Rose Tyler", "delete":"false"}
+]
+```
+
+**Search Results**
+
+When specifed **AND** the option *resultsGrouping* is set to true, search results will be grouped by the value specied in *groupname*
+
+```
+"groupname": <stringval>
+```
+
+For example:
+
+```
+[
+	{group:'2nd Doctor',id:1,name:'Brigadier Lethbridge-Stewart'}
+	,{group:'3rd Doctor',id:2,name:'Liz Shaw'}
+]
 ```
 
 ## Configuation Options
@@ -67,9 +100,9 @@ option | description | Example
 :-- | :--- | :---
 *minchars* | The number of characters that must be entered before a search will be performed. *Default: 2*. | ```$("searcher").searcher({michars:5});```
 *searchDelay* | The delay in milliseconds before a search is carried out after typing finishes. *Default: 500*. | ```$("searcher").searcher({searchDelay:250});```
-*prePopulate* | jSON array of items to prepopulate searcher with with data, e.g.  *Default:null*. | ```$("searcher").searcher({prePopulate:[{id:1, name:'Hartnell'}, {id:2, name:'Troughton'}, {id:3, name:'Pertwee'}]});```
+*prePopulate* | jSON array of items to prepopulate searcher with with data, e.g.  *Default:null*. | ```$("searcher").searcher({prePopulate:[{id:1, name:'Hartnell'}, {id:2, name:'Troughton'}]});```
 *searchURL* | URL of a a server side script capable of generating jSON. *Default: null*.  | ```$("searcher").searcher({searchURL:'../WebServices/wsSearch.asmx/Drugs'});```
-*searchLocalData* | jSON array of items to to use for search data , e.g. . *Default:null*. | ```$("searcher").searcher({prePopulate:[{id:4, name:'Baker', group:'Doctor Who'}, {id:5, name:'Davison', group:'Doctor Who'}, {id:6, name:'Baker', group:'Doctor Who'}]});```
+*searchLocalData* | jSON array of items to to use for search data , e.g. . *Default:null*. | ```$("searcher").searcher({prePopulate:[{id:4, name:'Baker', group:'Doctor Who'}, {id:5, name:'Davison', group:'Doctor Who'}]});```
 *searchGroupText* | If enabled, and it is present, any group name data associated with the search data will be searched. *Default: false*. |
 *highlightMatches* | When enabled will hilight the parts of the search results which match the provided search terms. *Default: true*. |
 *hintText* | Placeholder text displayed in the search input box. *Default: Type in a search term*. |
@@ -91,14 +124,14 @@ To pass multiple options, comma separate them, for example:
 
 ```
 $(".example1").Searcher(										
-							{			
-								minchars: 1
-								, excludeSelectedItems: false
-								, searchGroupText: true
-								, maxResultsReturned: 100
-							    , allowDuplicates: false
-						    }
-						);
+				{			
+					minchars: 1
+					, excludeSelectedItems: false
+					, searchGroupText: true
+					, maxResultsReturned: 100
+					, allowDuplicates: false
+				}
+			);
 ```
 
 ## Methods
@@ -109,4 +142,4 @@ Method | Description | Example
 *add* | Adds an item or items to the selected box, data is in the form of an array (specifed in **Data Options**,above) | ``` $(".example1").Searcher("add", [{"id":1, "name":"zygon"}, {"id":2, "name":"dalek"}]); ```
 *get* | Returns an array of selected items (specifed in **Data Options**,above) | ```$("searcher").searcher("get");```
 *remove* | Removes the sepecifed item or items from the selected box, data is in the form of an array of IDs | ``` $(".example1").Searcher("remove", [{"id":"Tennant"}, {"id":"McCoy"]); ```
-*settinsg* | Configure the control using the options specified in the section **Configuration Options** |
+*settings* | Configure the control using the options specified in the section **Configuration Options** |
