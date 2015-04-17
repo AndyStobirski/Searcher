@@ -16,6 +16,10 @@ The second and third options require data in the form of jSon.
 
 ## Screenshots
 
+![](https://github.com/AndyStobirski/Searcher/blob/master/img/Searcher1.png)
+
+Local search results specified, with grouping and search term highlighting enabled.
+
 ## Installation
 
 ### Initialise the plugin
